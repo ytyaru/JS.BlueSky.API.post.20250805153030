@@ -1,12 +1,6 @@
 (function(){
 class BlueSky {
     constructor(){this._={}}
-    /*
-    constructor(handle, appPw) {
-        if (![handle, appPw].every(s=>Type.isStr(s) && 0 < s.length)) {throw new TypeError(`BlueSkyのハンドルとアプリパスワードを入力してください。`)}
-        this._ = {handle:handle, appPw:appPw}
-    }
-    */
     set handle(v) {if (Type.isStr(v) && 0 < v.length){this._.handle=v}}
     set appPw(v) {if (Type.isStr(v) && 0 < v.length){this._.appPw=v}}
     async #createSession() {
@@ -14,30 +8,19 @@ class BlueSky {
         const res = await fetch('https://bsky.social/xrpc/com.atproto.server.createSession', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            //payload: JSON.stringify({
             body: JSON.stringify({
                 identifier: this._.handle,
                 password: this._.appPw
             })
         });
         console.log(res)
-//        if (res.getResponseCode() === 200) {
         if (200===res.status) {
-            //const sessionData = JSON.parse(res.getContentText());
             const json = await res.json();
             console.log(json)
-            //const sessionData = JSON.parse(json);
             const sessionData = json;
             console.log('✅ Blueskyログイン成功！');
             return sessionData.accessJwt;
         } else {throw new Error(`ログイン失敗`, res);}
-        //} else {throw new Error(`ログイン失敗: ${res.getContentText()}`);}
-        /*
-        catch (error) {
-            console.error('❌ セッション作成エラー:', error);
-            throw error;
-        }
-        */
     }
     async post(message) {
         try {
@@ -48,7 +31,6 @@ class BlueSky {
                     'Authorization': `Bearer ${accessJwt}`,
                     'Content-Type': 'application/json'
                 },
-                //payload: JSON.stringify({
                 body: JSON.stringify({
                     repo: this._.handle,
                     collection: 'app.bsky.feed.post',
@@ -58,7 +40,6 @@ class BlueSky {
                     }
                 })
             });
-            //return response.getResponseCode() === 200;
             return 200 === res.status;
         } catch (error) {
             console.error('❌ 投稿エラー:', error);

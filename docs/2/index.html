@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="description" content="">
+<meta name="author" content="ytyaru">
+<link rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja">
+<link rel="icon" href="../asset/image/author/ytyaru.png">
+<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../lib/van/1.5.3/nomodule/min.js"></script>
+<script src="../lib/util/type.js"></script>
+<script src="../lib/util/test/assertion.js"></script>
+<script src="js/bluesky.js"></script>
+<script src="js/main.js"></script>
+</head>
+<body>
+    <main>
+        <h1>BlueSky 投稿</h1>
+        <label>ハンドル</label><input name="handle" placeholder="your.bsky.social" autocomplete="username"><br>
+        <label>アプリパスワード</label><input name="appPw" type="password" placeholder="1234-abcd-5678-efgh" autocomplete="new-password"><br>
+        <label>投稿内容</label><br>
+        <textarea name="message" placeholder="投稿内容。" style="width:100%; min-height:4em;">JavaScriptからAPIを叩いてBlueSkyに投稿します。</textarea>
+        <button name="post" style="width:100%;">投稿</button>
+        <p name="result"></p>
+        <label>サイトで投稿を確認:</label><a name="profile" href="https://bsky.app/profile/" target="_blank" rel="noopener noreferrer"></a>
+    </main>
+    <footer></footer>
+</body>
+</html>
+<!-- https://coliss.com/articles/build-websites/operation/work/html-template-for-web-apps-or-sites.html -->
+<!-- https://coliss.com/articles/build-websites/operation/work/html5-template-for-2018.html -->
